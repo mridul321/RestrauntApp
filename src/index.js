@@ -1,66 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RestrauntList from './RestrauntList';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import LocationDisplay from './LocationDisplay';
+import Sidebar from './Sidebar';
 
 
-class App extends React.Component {
 
-    state = { lat: null, long: null , error: ''};
+  
 
-   
+const pageOne = () =>{
 
-   render(){
+   return(
+            <div style={{backgroundColor: "lightgrey"}}>
+                <Sidebar />
+                <div className="pusher">
 
-           
+                <div className="ui vertical divider">.</div>
+                <img
+                alt= "error loading"
+                style= {{paddingTop: "30vh", marginLeft: "50vh"}} 
+                className="ui medium left floated circular image" 
+                src ="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&w=1000&q=80"/>
 
-           const onDetectLocation = () => {
-               window.navigator.geolocation.getCurrentPosition(
-                   position => this.setState({ lat: position.coords.latitude, long: position.coords.longitude }), 
-                   err => this.setState({error: err.message})
-               );
-
-              
              
-   
-              
-           }
+                
+                <h1 style={{fontSize: "50px",fontFamily: "cursive" ,paddingTop: "40vh", paddingLeft: "115vh"}}> Hey Foodie!</h1>
+                <a style={{marginLeft: "30vh", marginTop: "10vh", marginBottom: "1vh"}} className="ui green button" href="/nearby-restraunts">
+                    <i className="white map marker alternate icon"/>
+                        Nearby Restraunts
+                </a>
 
-           if(this.state.error){
-               alert("Please provide location "+ this.state.error);
-           }
-
-           if(this.state.lat){
-              
-           }
+                </div>
+                
+                 
+            
+            </div>
+             
            
-         
         
-           return (
-               <div>
-                   <BrowserRouter>
-                   <Switch>
-                   <Route path= "/" exact component= {App}>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>   
-               
-               <button 
-                   className="ui green button"
-                   onClick = {()=> onDetectLocation()}>Nearby Restraunts
-                 </button>
-                   
-                </div>    
-                   </Route>
-                    <Route path="/nearby-restraunts" component = {()=> <RestrauntList latitude= {this.state.lat} /> }></Route>
-                    </Switch>
-                   </BrowserRouter>
-               </div>
-           );
-
-       }
-
-
+    
+    ) ;
+  
 };
 
+const App = () => {
+
+ return (
+        <BrowserRouter>
+            <Route path="/" exact component = {pageOne}/>
+
+          
+            <Route path = "/nearby-restraunts" component = {LocationDisplay}/>
+        </BrowserRouter>
+ );
+};
 
 
 ReactDOM.render(

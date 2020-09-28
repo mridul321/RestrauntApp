@@ -6,7 +6,7 @@ const RestrauntList = props => {
 
 
    
- console.log(props.latitude); 
+ console.log(props.restraunts); 
 
 return <div>Restraunt List!</div>;
 };
