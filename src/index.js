@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 import LocationDisplay from './LocationDisplay';
 import Sidebar from './Sidebar';
-
-
+import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/components/rating.css";
 
   
 
